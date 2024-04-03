@@ -8,14 +8,11 @@ import 'izitoast/dist/css/iziToast.min.css';
 const lightbox = new SimpleLightbox('.gallery a', {
   /* options */
 });
-// window.onload = function () {
-//   let preloader = document.getElementById('preloader');
-//   preloader.style.display = 'none';
-// };
 
 const formEl = document.querySelector('.form');
 const galleryEl = document.querySelector('.gallery');
 let preloader = document.querySelector('.preloader');
+
 window.addEventListener('load', () => {
   preloader.classList.add('hide');
   setTimeout(() => {
