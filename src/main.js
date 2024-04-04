@@ -13,20 +13,14 @@ const formEl = document.querySelector('.form');
 const galleryEl = document.querySelector('.gallery');
 let preloader = document.querySelector('.preloader');
 
-window.addEventListener('load', () => {
-  preloader.classList.add('hide');
-  setTimeout(() => {
-    preloader.remove();
-  }, 600);
-});
-
 formEl.addEventListener('submit', event => {
   event.preventDefault();
   const data = Object.fromEntries(new FormData(event.target));
-  console.log(data);
+
   if (data.message === '') {
     return;
   }
+  preloader.classList.add('show');
   getData(data.message)
     .then(response => {
       if (response.hits.length === 0) {
@@ -45,6 +39,9 @@ formEl.addEventListener('submit', event => {
       iziToast.error({
         message: 'Error!!!',
       });
+    })
+    .finally(() => {
+      preloader.classList.remove('show');
     });
 });
 
